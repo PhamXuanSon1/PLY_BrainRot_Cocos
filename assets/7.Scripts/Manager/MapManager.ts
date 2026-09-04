@@ -1,5 +1,7 @@
 import { _decorator, Node } from 'cc';
 import { Ply_Singleton } from '../ScriptTemplate/Ply_Singleton';
+import { Ply_Pool, PoolType } from '../ScriptTemplate/Ply_Pool';
+import { Ply_GameUnit } from '../ScriptTemplate/Ply_GameUnit';
 const { ccclass, property } = _decorator;
 
 /**
@@ -36,10 +38,47 @@ export class MapManager extends Ply_Singleton {
     }
 
     /**
+     * Thu hoi (despawn) toan bo bullet da ban ve lai pool.
+     */
+    public despawnAllBullets() {
+        if (Ply_Pool.Ins) {
+            Ply_Pool.Ins.despawnAll(PoolType.Bullet);
+        }
+
+        // Quet phong ve (fallback) cac container de dam bao khong con bullet nao bi sot lai
+        const containersToClean: Node[] = [];
+        if (this.bulletContainers && this.bulletContainers.length > 0) {
+            for (const container of this.bulletContainers) {
+                if (container && container.isValid) {
+                    containersToClean.push(container);
+                }
+            }
+        }
+        if (this.defaultBulletContainer && this.defaultBulletContainer.isValid) {
+            containersToClean.push(this.defaultBulletContainer);
+        }
+
+        for (const container of containersToClean) {
+            const children = [...container.children];
+            for (const child of children) {
+                const gameUnit = child.getComponent(Ply_GameUnit);
+                if (gameUnit && Ply_Pool.Ins) {
+                    Ply_Pool.Ins.despawn(PoolType.Bullet, gameUnit);
+                } else {
+                    child.active = false;
+                }
+            }
+        }
+    }
+
+    /**
      * Bat Map tai index chi dinh, tat tat ca cac Map con lai.
+     * Despawn toan bo bullet truoc khi chuyen sang Map moi.
      */
     public showMap(index: number) {
         if (index < 0 || index >= this.maps.length) return;
+
+        this.despawnAllBullets();
 
         this.maps.forEach((map, i) => {
             if (map) map.active = (i === index);
@@ -54,6 +93,7 @@ export class MapManager extends Ply_Singleton {
     public nextMap() {
         const nextIndex = this.currentIndex + 1;
         if (nextIndex >= this.maps.length) {
+            this.despawnAllBullets();
             this.onAllMapsCleared();
             return;
         }

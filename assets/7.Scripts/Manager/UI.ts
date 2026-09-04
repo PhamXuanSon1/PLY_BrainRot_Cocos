@@ -1,4 +1,4 @@
-import { _decorator, Animation, Camera, Color, Component, Director, Enum, EventTouch, Label, misc, Node, ParticleSystem2D, PhysicsSystem, size, Size, Sprite, toDegree, Tween, tween, UITransform, v2, v3, Vec2, Vec3, view, Widget } from 'cc';
+import { _decorator, Animation, Camera, Color, Component, Director, Enum, EventTouch, find, Label, misc, Node, ParticleSystem2D, PhysicsSystem, size, Size, Sprite, toDegree, Tween, tween, UITransform, v2, v3, Vec2, Vec3, view, Widget } from 'cc';
 import { World } from './World';
 import { PointerController } from './PointerController';
 import { SoundType } from './SoundManager';
@@ -33,9 +33,11 @@ export class UI extends Component {
     pCam: Camera = null;
     @property(Node)
     hand: Node = null!;
-    @property(Node)
+    @property({ type: Node, tooltip: 'Màn hình hiển thị khi Thua (Lose/Loss)' })
+    loseCard: Node = null!;
+    @property({ type: Node, tooltip: 'Màn hình hiển thị khi Thua (fallback cũ)' })
     endcard: Node = null!;
-    @property(Node)
+    @property({ type: Node, tooltip: 'Màn hình hiển thị khi Thắng (Win)' })
     winCard: Node = null!;
     win: boolean = false;
 
@@ -44,6 +46,17 @@ export class UI extends Component {
 
     onLoad() {
         ui = this; 
+        if (!this.winCard) {
+            this.winCard = find('Canvas3D/Win') ?? find('Canvas2D/Win') ?? find('Win') ?? null!;
+        }
+        if (!this.loseCard && !this.endcard) {
+            this.loseCard = find('Canvas3D/Lose') ?? find('Canvas3D/Loss') ?? find('Canvas3D/End')
+                ?? find('Canvas2D/Lose') ?? find('Canvas2D/Loss') ?? find('Canvas2D/End')
+                ?? find('Lose') ?? find('Loss') ?? find('End') ?? null!;
+        }
+        if (this.winCard) this.winCard.active = false;
+        if (this.loseCard) this.loseCard.active = false;
+        if (this.endcard) this.endcard.active = false;
     }
 
     bindingToStore() {
@@ -67,21 +80,27 @@ export class UI extends Component {
         }
     }
 
+    private isGameEndedUI: boolean = false;
+
     onLose() {
-        if(this.endcard.active || this.winCard.active) return;  
-        this.offEnds.forEach(button => button.active = false);
+        if (this.isGameEndedUI) return;
+        this.isGameEndedUI = true;
+        this.offEnds?.forEach(button => button && (button.active = false));
         this.offHand();
-        this.endcard.active = true;
+        const loseNode = this.loseCard ?? this.endcard ?? ipm?.loseCard;
+        if (loseNode) loseNode.active = true;
         this.bindingToStore();       
         World.ins?.soundmanager?.playSound(SoundType.Fail);    
     }
 
-
     onWin() {
-        if(this.endcard.active || this.winCard.active) return; 
-        this.offEnds.forEach(button => button.active = false);
+        if (this.isGameEndedUI) return;
+        this.isGameEndedUI = true;
+        this.offEnds?.forEach(button => button && (button.active = false));
         this.offHand();
-        this.winCard.active = true;
+        // Tam thoi bo bat man hinh win:
+        // const winNode = this.winCard ?? ipm?.winCard;
+        // if (winNode) winNode.active = true;
         this.bindingToStore();  
         World.ins?.soundmanager?.playSound(SoundType.Win);      
     }

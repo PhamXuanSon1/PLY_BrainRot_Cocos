@@ -45,6 +45,7 @@ export class Ply_Pool extends Ply_Singleton {
     poolAmounts: PoolAmount[] = [];
 
     private dict: Map<PoolType, Ply_GameUnit[]> = new Map();
+    private activeDict: Map<PoolType, Ply_GameUnit[]> = new Map();
 
 
     // onLoad() la ham duoc goi khi component duoc khoi tao, truoc khi bat dau scene
@@ -115,6 +116,13 @@ export class Ply_Pool extends Ply_Singleton {
             gameUnit.node.setWorldPosition(pos);
             gameUnit.node.setWorldRotation(rot);
             gameUnit.node.active = true;
+
+            let activeList = this.activeDict.get(poolType);
+            if (!activeList) {
+                activeList = [];
+                this.activeDict.set(poolType, activeList);
+            }
+            activeList.push(gameUnit);
         }
 
         return gameUnit;
@@ -126,6 +134,23 @@ export class Ply_Pool extends Ply_Singleton {
      * @param gameUnit - Game unit can thu hoi
      */
     public despawn(poolType: PoolType, gameUnit: Ply_GameUnit) {
+        if (!gameUnit || !gameUnit.isValid || !gameUnit.node || !gameUnit.node.isValid) return;
+
+        // Xoa khoi danh sach active neu co
+        const activeList = this.activeDict.get(poolType);
+        if (activeList) {
+            const idx = activeList.indexOf(gameUnit);
+            if (idx !== -1) {
+                activeList.splice(idx, 1);
+            }
+        }
+
+        const queue = this.dict.get(poolType);
+        // Tranh truong hop despawn 2 lan mot unit vao queue
+        if (queue && queue.indexOf(gameUnit) !== -1) {
+            return;
+        }
+
         gameUnit.node.active = false;
 
         // Tra node ve lai Pool node de lan spawn tiep theo setPosition() hoat dong dung
@@ -134,10 +159,35 @@ export class Ply_Pool extends Ply_Singleton {
             gameUnit.node.setParent(this.node, false);
         }
 
-        if (!this.dict.has(poolType)) {
-            this.dict.set(poolType, []);
+        if (!queue) {
+            this.dict.set(poolType, [gameUnit]);
+        } else {
+            queue.push(gameUnit);
         }
-        this.dict.get(poolType)!.push(gameUnit);
+    }
+
+    /**
+     * Thu hoi tat ca game unit dang active ve lai pool.
+     * Neu truyen poolType thi chi thu hoi cac unit cua loai do.
+     */
+    public despawnAll(poolType?: PoolType) {
+        if (poolType !== undefined) {
+            const activeList = this.activeDict.get(poolType);
+            if (!activeList || activeList.length === 0) return;
+
+            const list = [...activeList];
+            for (let i = 0; i < list.length; i++) {
+                const unit = list[i];
+                if (unit && unit.isValid) {
+                    this.despawn(poolType, unit);
+                }
+            }
+            return;
+        }
+
+        this.activeDict.forEach((_, type) => {
+            this.despawnAll(type);
+        });
     }
 
     /**
@@ -154,6 +204,8 @@ export class Ply_Pool extends Ply_Singleton {
 
     onDestroy() {
         super.onDestroy();
+        this.dict.clear();
+        this.activeDict.clear();
         if (Ply_Pool.Ins === this) {
             Ply_Pool.Ins = null;
         }
