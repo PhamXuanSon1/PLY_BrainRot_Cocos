@@ -1,9 +1,10 @@
-import { _decorator, Animation, Camera, Color, Component, Director, Enum, EventTouch, find, Label, misc, Node, ParticleSystem2D, PhysicsSystem, size, Size, Sprite, toDegree, Tween, tween, UITransform, v2, v3, Vec2, Vec3, view, Widget } from 'cc';
+import { _decorator, Animation, Camera, Color, Component, Director, Enum, EventTouch, find, Input, input, Label, misc, Node, ParticleSystem2D, PhysicsSystem, size, Size, Sprite, toDegree, Tween, tween, UITransform, v2, v3, Vec2, Vec3, view, Widget } from 'cc';
 import { World } from './World';
 import { PointerController } from './PointerController';
 import { SoundType } from './SoundManager';
 import { Clock } from './Clock';
 import { ipm } from './InputManager';
+import { GameController } from '../Tool/GameController';
 const { ccclass, property } = _decorator;
 
 export enum BindUIType {
@@ -59,16 +60,40 @@ export class UI extends Component {
         if (this.endcard) this.endcard.active = false;
     }
 
+    private isStoreBound: boolean = false;
+
     bindingToStore() {
+        if (this.isStoreBound) return;
+        this.isStoreBound = true;
+
         PointerController.ins?.unBindingEvent();
         ipm?.offBinding();
         PointerController.ins?.onStore();
+
+        // Sau khi Win/Loss, click vao bat ky dau tren man hinh deu goi redirectToStore()
+        this.scheduleOnce(() => {
+            input.on(Input.EventType.TOUCH_END, this.onScreenClickToStore, this);
+        }, 0.1);
+    }
+
+    private onScreenClickToStore(event?: EventTouch) {
+        this.openStore();
     }
 
     openStore(...args: any) {
         console.log('openStore');  
         World.ins?.soundmanager?.stopAll();      
-        World.ins?.openStore?.redirectToStore();
+        if (GameController.instance) {
+            GameController.instance.redirectToStore();
+        } else if (World.ins?.openStore) {
+            World.ins.openStore.redirectToStore();
+        } else {
+            find('OpenStore')?.getComponent(GameController)?.redirectToStore();
+        }
+    }
+
+    onDestroy() {
+        input.off(Input.EventType.TOUCH_END, this.onScreenClickToStore, this);
     }
 
     first: boolean = true;

@@ -22,3 +22,8 @@ node_modules/
 # WebStorm
 #//////////////////////////
 .idea/
+
+#//////////////////////////
+# Large binaries (>100MB)
+#//////////////////////////
+extensions/playable-size-inspector/tools/ffmpeg/

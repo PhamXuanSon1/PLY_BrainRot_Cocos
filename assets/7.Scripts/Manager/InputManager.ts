@@ -4,6 +4,7 @@ import { sm } from './SoundManager';
 import { Ply_Pool, PoolType } from '../ScriptTemplate/Ply_Pool';
 import { FxType, Ply_SoundManager } from '../ScriptTemplate/Ply_SoundManager';
 import { MapManager } from './MapManager';
+import { GameController } from '../Tool/GameController';
 const { ccclass, property } = _decorator;
 const PLAYER_HIT_DELAY = 3;
 
@@ -198,6 +199,7 @@ export class InputManager extends Component {
         //     this.winCard.active = true;
         // }
         ui?.onWin();
+        this.bindStoreClick();
     }
 
     /**
@@ -255,6 +257,31 @@ export class InputManager extends Component {
             this.loseCard.active = true;
         }
         ui?.onLose();
+        this.bindStoreClick();
+    }
+
+    private isStoreBound: boolean = false;
+
+    /**
+     * Dang ky su kien click toan man hinh sau khi Win hoac Loss de chuyen huong vao Store
+     */
+    private bindStoreClick() {
+        if (this.isStoreBound) return;
+        this.isStoreBound = true;
+
+        this.scheduleOnce(() => {
+            input.on(Input.EventType.TOUCH_END, this.onStoreClicked, this);
+        }, 0.15);
+    }
+
+    private onStoreClicked(event?: EventTouch) {
+        if (ui) {
+            ui.openStore();
+        } else if (GameController.instance) {
+            GameController.instance.redirectToStore();
+        } else {
+            find('OpenStore')?.getComponent(GameController)?.redirectToStore();
+        }
     }
 
     private onPlayerHitDelayFinished() {
@@ -354,5 +381,6 @@ export class InputManager extends Component {
         this.warningAnimation?.off(Animation.EventType.FINISHED, this.onWarningFinished, this);
         this.unscheduleAllCallbacks();
         this.offBinding();
+        input.off(Input.EventType.TOUCH_END, this.onStoreClicked, this);
     }
 }

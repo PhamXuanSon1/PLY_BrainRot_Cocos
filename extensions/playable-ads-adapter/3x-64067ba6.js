@@ -4,16 +4,16 @@ var e = require("electron"),
   t = require("os"),
   o = require("fs"),
   a = require("path"),
-  n = require("./playable-adapter-core-898051f4.js");
+  n = require("./playable-adapter-core-0ce23d83.js");
 function i(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 var l = i(r),
-  s = i(t);
-const { exec: c, execSync: d } = l.default;
+  c = i(t);
+const { exec: s, execSync: d } = l.default;
 var u = {
   run: function (e, r) {
-    return c(e, function (e, t, o) {
+    return s(e, function (e, t, o) {
       r && r(e, t, o);
     });
   },
@@ -30,7 +30,7 @@ var u = {
   },
 };
 const p = "playable-ads-adapter",
-f = () => {
+    f = () => {
     return {
       buildPlatform: "web-mobile",
       exportChannels: [
@@ -55,9 +55,9 @@ f = () => {
           sdkScript: "",
         },
         Google: {
-          head: "<meta name='ad.size' content=\"width=320,height=480\" >",
+          head: "<script>window.IS_GOOGLE_BUILD=true;</script><meta name='ad.size' content=\"width=320,height=480\" >",
           sdkScript: "",
-          body: "<script>var clickTag='';var android='';function setStoreUrl(iosUrl, androidUrl){clickTag=iosUrl;android=androidUrl;if(/android/i.test(navigator.userAgent)){clickTag=android}};function redirectStore(){window.open(clickTag)}</script>",
+          body: "<script>window.IS_GOOGLE_BUILD=true;var clickTag='';var android='';function setStoreUrl(iosUrl, androidUrl){clickTag=iosUrl;android=androidUrl;if(/android/i.test(navigator.userAgent)){clickTag=android}};function redirectStore(){window.open(clickTag)}</script>",
         },
         Mintegral: {
           head: "",
@@ -75,7 +75,7 @@ f = () => {
           sdkScript: '<script src="./mraid.js"></script>',
         },
         Unity: {
-          head: "\n<!--https://play.google.com/store/apps/details?id=com.abi.packingdom\n-->\n<!--https://apps.apple.com/us/app/packingdom/id6760441822\n-->",
+          head: "\n<!--https://play.google.com/store/apps/details?id=com.brainrot.mini.challenge\n-->\n<!--\n-->",
           body: "<script>if(mraid.getState()==='loading'){mraid.addEventListener('ready',onSdkReady)}else{onSdkReady()}function viewableChangeHandler(viewable){if(viewable){}else{}}function onSdkReady(){mraid.addEventListener('viewableChange',viewableChangeHandler);if(mraid.isViewable()){showMyAd()}}var url='';var android='';function setStoreUrl(iosUrl, androidUrl){url=iosUrl;android=androidUrl;if(/android/i.test(navigator.userAgent)){url=android}};function redirectStore(){mraid.open(url)};function showMyAd(){}</script>",
           sdkScript: '<script src="./mraid.js"></script>',
         },
@@ -99,12 +99,12 @@ f = () => {
     const e = f();
     return !!e && (e.skipBuild ?? !1);
   };
-var m = require("path").join(__dirname + "/3x-a98eea0b.js");
+var m = require("path").join(__dirname + "/3x-23a715e3.js");
 const P = (e) =>
     new Promise((r, t) => {
       let o = Editor.App.path;
       const a = (() => {
-        const e = s.default.platform();
+        const e = c.default.platform();
         return "win32" === e
           ? "WINDOWS"
           : "darwin" === e
@@ -138,19 +138,19 @@ const P = (e) =>
           projectBuildPath: i,
           adapterBuildConfig: l,
         } = h(),
-        s = a.join(o, i);
+        c = a.join(o, i);
       console.info(`${p} 开始适配，导出平台 ${e.platform}`);
-      const c = new Date().getTime(),
+      const s = new Date().getTime(),
         d = () => {
           const e = new Date().getTime();
-          (console.log(`${p} 适配完成，共耗时${((e - c) / 1e3).toFixed(0)}秒`),
+          (console.log(`${p} 适配完成，共耗时${((e - s) / 1e3).toFixed(0)}秒`),
             r(!0));
         },
         u = (e) => {
           (console.error("适配失败"), t(e));
         },
         f = {
-          buildFolderPath: s,
+          buildFolderPath: c,
           buildName: e.name ?? "",
           adapterBuildConfig: { ...l, buildPlatform: e.platform },
         };
