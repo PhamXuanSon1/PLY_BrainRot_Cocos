@@ -88,9 +88,10 @@ export class Ply_Pool extends Ply_Singleton {
      * @param poolType - Loai doi tuong can spawn
      * @param pos - Vi tri the gioi
      * @param rot - Goc quay (Quat), mac dinh la identity
+     * @param parent - Node cha muon gan vao (mac dinh la node cua Pool)
      * @returns Ply_GameUnit duoc spawn
      */
-    public spawn(poolType: PoolType, pos: Vec3, rot: Quat = new Quat()): Ply_GameUnit | null {
+    public spawn(poolType: PoolType, pos: Vec3, rot: Quat = new Quat(), parent: Node | null = null): Ply_GameUnit | null {
         const queue = this.dict.get(poolType); // Lay danh sach game unit tu pool
         let gameUnit: Ply_GameUnit | null = null; // Khai bao bien gameUnit de luu ket qua
 
@@ -109,6 +110,8 @@ export class Ply_Pool extends Ply_Singleton {
         }
 
         if (gameUnit) {
+            // Neu co chi dinh parent rieng (vd: de nhin thay bullet hole tren mot Node cu the) thi gan vao do
+            gameUnit.node.setParent(parent ?? this.node, true);
             gameUnit.node.setWorldPosition(pos);
             gameUnit.node.setWorldRotation(rot);
             gameUnit.node.active = true;

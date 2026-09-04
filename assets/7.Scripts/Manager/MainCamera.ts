@@ -1,6 +1,4 @@
 import { _decorator, Camera, Color, Component, Node, v3, Vec2, Vec3 } from 'cc';
-import { UI } from './UI';
-import { World } from './World';
 const { ccclass, property } = _decorator;
 
 @ccclass('MainCamera')

@@ -1,6 +1,6 @@
 import { _decorator, Component, game, Node, PhysicsSystem, Pool} from 'cc';
-import { UI } from './UI';
-import SoundManager, { SoundType } from './SoundManager';
+import type { UI } from './UI';
+import SoundManager, { SoundType, sm, setSm } from './SoundManager';
 import { MainCamera } from './MainCamera';
 import { GameController } from '../Tool/GameController';
 import { PoolManager } from '../Pool/PoolManager';
@@ -18,7 +18,7 @@ export class World extends Component {
         }
         return this.instance;
     }
-    @property(UI)
+    @property('UI')
     ui: UI = null!;
     
     @property(GameController)
@@ -39,6 +39,9 @@ export class World extends Component {
     
     onLoad() {
         World.instance = this;
+        if (this.soundmanager && !sm) {
+            setSm(this.soundmanager);
+        }
     }  
 
     start() {

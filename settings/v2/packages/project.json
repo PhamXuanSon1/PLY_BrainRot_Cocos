@@ -31,6 +31,10 @@
     {
       "name": "BG",
       "value": 2
+    },
+    {
+      "name": "Player",
+      "value": 4
     }
   ]
 }

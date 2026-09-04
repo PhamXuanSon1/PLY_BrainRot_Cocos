@@ -22,8 +22,11 @@ export enum SoundType{
 }
 
 export var sm: SoundManager = null;
+export function setSm(s: SoundManager) {
+    sm = s;
+}
 
-@ccclass
+@ccclass('SoundManager')
 export default class SoundManager extends Component {
 
     onLoad() {
@@ -43,7 +46,7 @@ export default class SoundManager extends Component {
 
     playSound(type: SoundType, loop: boolean = false, call = () => {}): AudioSource{
         if(this.fail) return;
-        if(this.audiosource[type]){
+        if(this.audiosource && this.audiosource[type]){
             if(this.audiosource[type].playing) {
             }
             this.audiosource[type].play();
@@ -53,7 +56,7 @@ export default class SoundManager extends Component {
             }, this.audiosource[type].duration*1000);
 
         }
-        return this.audiosource[type];
+        return this.audiosource ? this.audiosource[type] : null;
     }
 
     pauseSound(type: SoundType){
@@ -118,13 +121,13 @@ export default class SoundManager extends Component {
     }
     start () {
         // this.playBgMusic();
-        this.audiosource = this.node.getComponentsInChildren(AudioSource);
-        this.volumes = this.audiosource.map(a => a.volume);
-        this.eventSound();        
-        this.schedule(this.checkAudio, 1);
-        this.checkAudio();
-        
-        
+        if(this.node) {
+            this.audiosource = this.node.getComponentsInChildren(AudioSource);
+            this.volumes = this.audiosource.map(a => a.volume);
+            this.eventSound();        
+            this.schedule(this.checkAudio, 1);
+            this.checkAudio();
+        }
     }
     eventSound() {
         

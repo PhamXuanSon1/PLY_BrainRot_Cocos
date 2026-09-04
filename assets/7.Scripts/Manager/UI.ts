@@ -58,15 +58,15 @@ export class UI extends Component {
     }
 
     bindingToStore() {
-        PointerController.ins.unBindingEvent();
-        ipm.offBinding();
-        PointerController.ins.onStore();
+        PointerController.ins?.unBindingEvent();
+        ipm?.offBinding();
+        PointerController.ins?.onStore();
     }
 
     openStore(...args: any) {
         console.log('openStore');  
-        World.ins.soundmanager.stopAll();      
-        World.ins.openStore.redirectToStore();
+        World.ins?.soundmanager?.stopAll();      
+        World.ins?.openStore?.redirectToStore();
     }
 
     first: boolean = true;
@@ -84,7 +84,7 @@ export class UI extends Component {
         this.offHand();
         this.endcard.active = true;
         this.bindingToStore();       
-        World.ins.soundmanager.playSound(SoundType.Fail);    
+        World.ins?.soundmanager?.playSound(SoundType.Fail);    
     }
 
 
@@ -94,7 +94,7 @@ export class UI extends Component {
         this.offHand();
         this.winCard.active = true;
         this.bindingToStore();  
-        World.ins.soundmanager.playSound(SoundType.Win);      
+        World.ins?.soundmanager?.playSound(SoundType.Win);      
     }
 
     offHand() {

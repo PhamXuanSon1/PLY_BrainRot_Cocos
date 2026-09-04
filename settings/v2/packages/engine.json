@@ -242,7 +242,7 @@
         "_value": false
       },
       "3d": {
-        "_value": true
+        "_value": false
       },
       "2d": {
         "_value": true
@@ -254,7 +254,7 @@
         "_value": true
       },
       "particle": {
-        "_value": true
+        "_value": false
       },
       "physics": {
         "_value": false,
@@ -331,7 +331,7 @@
         "_value": false
       },
       "spine": {
-        "_value": true
+        "_value": false
       },
       "dragon-bones": {
         "_value": false
@@ -346,17 +346,14 @@
     "flags": {},
     "includeModules": [
       "2d",
-      "3d",
       "animation",
       "audio",
       "base",
       "gfx-webgl",
       "gfx-webgl2",
-      "particle",
       "particle-2d",
       "physics-2d-box2d",
       "profiler",
-      "spine",
       "tween",
       "ui",
       "webview"
