@@ -4,7 +4,6 @@ import { PointerController } from './PointerController';
 import { SoundType } from './SoundManager';
 import { Clock } from './Clock';
 import { ipm } from './InputManager';
-import { room } from '../Gameplay/Room';
 const { ccclass, property } = _decorator;
 
 export enum BindUIType {
@@ -44,17 +43,7 @@ export class UI extends Component {
     onStoreFuncs: Function[] = [];
 
     onLoad() {
-        ui = this;
-        
-        try {
-            if(window.redirectStore.toString() == "function redirectStore(){window.open(clickTag)}") {
-                this.offButtons.forEach(node => node.active = false);
-            }
-            
-            
-        } catch (error) {
-            
-        }
+        ui = this; 
     }
 
     bindingToStore() {

@@ -6,16 +6,8 @@ const { ccclass, property } = _decorator;
  * Enum cac loai hieu ung am thanh (FX).
  */
 export enum FxType {
-    Click = 0,
-    Happy = 1,
-    Wrong = 2,
-    Spray = 3,
-    Brush = 4,
-    Correct = 5,
-    Pop = 6,
-    Comb = 7,
-    Scissors = 8,
-    Curling = 9,
+    Bullet = 0,
+    Confetti = 1,
 }
 Enum(FxType);
 
@@ -42,34 +34,10 @@ class SoundData {
 @ccclass('FxAudio')
 class FxAudio {
     @property(SoundData)
-    clickBox: SoundData = new SoundData();
+    bullet: SoundData = new SoundData();
 
     @property(SoundData)
-    happy: SoundData = new SoundData();
-
-    @property(SoundData)
-    wrong: SoundData = new SoundData();
-
-    @property(SoundData)
-    spray: SoundData = new SoundData();
-
-    @property(SoundData)
-    brush: SoundData = new SoundData();
-
-    @property(SoundData)
-    correct: SoundData = new SoundData();
-
-    @property(SoundData)
-    pop: SoundData = new SoundData();
-
-    @property(SoundData)
-    comb: SoundData = new SoundData();
-
-    @property(SoundData)
-    scissors: SoundData = new SoundData();
-
-    @property(SoundData)
-    curling: SoundData = new SoundData();
+    confetti: SoundData = new SoundData();
 }
 
 /**
@@ -92,9 +60,9 @@ export class Ply_SoundManager extends Ply_Singleton {
     @property(AudioSource)
     bgm1: AudioSource | null = null;
 
-    private fxSources: (AudioSource | null)[] = new Array(10).fill(null);
-    private queuedCount: number[] = new Array(10).fill(0);
-    private queueTimers: (number | null)[] = new Array(10).fill(null);
+    private fxSources: (AudioSource | null)[] = new Array(2).fill(null);
+    private queuedCount: number[] = new Array(2).fill(0);
+    private queueTimers: (number | null)[] = new Array(2).fill(null);
 
     private isMute: boolean = false;
 
@@ -253,16 +221,8 @@ export class Ply_SoundManager extends Ply_Singleton {
      */
     private getSoundData(type: FxType): SoundData | null {
         switch (type) {
-            case FxType.Click: return this.fxAudio.clickBox;
-            case FxType.Happy: return this.fxAudio.happy;
-            case FxType.Wrong: return this.fxAudio.wrong;
-            case FxType.Spray: return this.fxAudio.spray;
-            case FxType.Brush: return this.fxAudio.brush;
-            case FxType.Correct: return this.fxAudio.correct;
-            case FxType.Pop: return this.fxAudio.pop;
-            case FxType.Comb: return this.fxAudio.comb;
-            case FxType.Scissors: return this.fxAudio.scissors;
-            case FxType.Curling: return this.fxAudio.curling;
+            case FxType.Bullet: return this.fxAudio.bullet;
+            case FxType.Confetti: return this.fxAudio.confetti;
             default: return null;
         }
     }
