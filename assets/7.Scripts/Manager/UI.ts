@@ -68,7 +68,6 @@ export class UI extends Component {
 
         PointerController.ins?.unBindingEvent();
         ipm?.offBinding();
-        PointerController.ins?.onStore();
 
         // Sau khi Win/Loss, click vao bat ky dau tren man hinh deu goi redirectToStore()
         this.scheduleOnce(() => {
@@ -80,7 +79,13 @@ export class UI extends Component {
         this.openStore();
     }
 
+    private lastStoreClickTime: number = 0;
+
     openStore(...args: any) {
+        const now = Date.now();
+        if (now - this.lastStoreClickTime < 500) return;
+        this.lastStoreClickTime = now;
+
         console.log('openStore');  
         World.ins?.soundmanager?.stopAll();      
         if (GameController.instance) {

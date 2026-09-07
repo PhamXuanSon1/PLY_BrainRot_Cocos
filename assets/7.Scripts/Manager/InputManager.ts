@@ -1,4 +1,4 @@
-import { _decorator, Animation, Camera, Color, Component, Enum, EventTouch, find, Input, input, Layers, Node, PhysicsSystem2D, Sprite, tween, UIOpacity, Vec3, v2, view } from 'cc';
+import { _decorator, Animation, Camera, Color, Component, Enum, EventTouch, find, Input, input, Layers, Node, ParticleSystem2D, PhysicsSystem2D, Sprite, tween, UIOpacity, Vec3, v2, view } from 'cc';
 import { ui } from './UI';
 import { sm } from './SoundManager';
 import { Ply_Pool, PoolType } from '../ScriptTemplate/Ply_Pool';
@@ -35,6 +35,9 @@ export class InputManager extends Component {
 
     @property({ tooltip: 'Thời gian chờ (giây) sau khi bắn trúng Player trước khi chuyển map' })
     playerHitDelay: number = PLAYER_HIT_DELAY;
+
+    @property({ tooltip: 'Thời gian chờ (giây) sau khi bắn trúng Player trước khi bật Confetti và phát âm thanh' })
+    confettiDelay: number = 0.5;
 
     @property(Node)
     confetti: Node = null!;
@@ -167,7 +170,7 @@ export class InputManager extends Component {
     }
 
     /**
-     * Bat Confetti va chay animation.
+     * Bat Confetti va chay animation + particle.
      */
     public playConfetti() {
         if (!this.confetti) return;
@@ -177,6 +180,10 @@ export class InputManager extends Component {
             a.stop();
             a.play();
         }
+        const particles = this.confetti.getComponentsInChildren(ParticleSystem2D);
+        for (const pt of particles) {
+            pt.resetSystem();
+        }
         Ply_SoundManager.Ins?.playFx(FxType.Confetti);
     }
 
@@ -184,8 +191,18 @@ export class InputManager extends Component {
      * Tat Confetti khi chuyen sang Map khac.
      */
     public stopConfetti() {
+        this.unschedule(this.onConfettiDelayFinished);
         if (!this.confetti) return;
         this.confetti.active = false;
+        const particles = this.confetti.getComponentsInChildren(ParticleSystem2D);
+        for (const pt of particles) {
+            pt.stopSystem();
+        }
+    }
+
+    private onConfettiDelayFinished() {
+        if (!this.isValid || this.isGameEnded) return;
+        this.playConfetti();
     }
 
     /**
@@ -266,6 +283,7 @@ export class InputManager extends Component {
      * Dang ky su kien click toan man hinh sau khi Win hoac Loss de chuyen huong vao Store
      */
     private bindStoreClick() {
+        if (ui) return; // UI.ts da tu dang ky su kien trong bindingToStore()
         if (this.isStoreBound) return;
         this.isStoreBound = true;
 
@@ -291,20 +309,20 @@ export class InputManager extends Component {
         const mapManager = MapManager.Ins;
         if (!mapManager) return;
 
-        // Khi da choi het map cuoi cung (Map 3) -> ngat hoan toan input, bat win
+        this.stopConfetti();
+        mapManager.nextMap();
+
+        // Khi vua chuyen sang Map cuoi cung (Map 3) -> ngat choi game, nhan click ra store
         if (mapManager.isLastMap()) {
             this.isGameEnded = true;
             this.offBinding();
             mapManager.despawnAllBullets();
-            Ply_SoundManager.Ins?.playFx(FxType.Confetti);
             this.showWin();
             return;
         }
 
         if (this.isGameEnded) return;
 
-        this.stopConfetti();
-        mapManager.nextMap();
         this.playIntroMovement();
     }
 
@@ -340,8 +358,12 @@ export class InputManager extends Component {
 
             Ply_Pool.Ins.spawn(PoolType.Bullet, worldLocation, undefined, MapManager.Ins?.getBulletContainer() ?? null);
             this.fadeInPlayer(hitPlayer.node, 1.0);
-            this.playConfetti();
             this.isChangingMap = true;
+            if (this.confettiDelay > 0) {
+                this.scheduleOnce(this.onConfettiDelayFinished, this.confettiDelay);
+            } else {
+                this.playConfetti();
+            }
             this.scheduleOnce(this.onPlayerHitDelayFinished, this.playerHitDelay ?? PLAYER_HIT_DELAY);
             return;
         }
