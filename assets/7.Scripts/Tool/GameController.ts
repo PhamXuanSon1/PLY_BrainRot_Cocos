@@ -24,8 +24,8 @@ export class GameController extends Component {
 
   start() {
     playableHelper.gameStart();
-    const androidUrl = "https://play.google.com/store/apps/details?id=com.brainrott.minigame.challenge";
-    const iosUrl = "";
+    const androidUrl = "";
+    const iosUrl = "https://apps.apple.com/us/app/tip-tap-challenge-minigame/id6760379229";
     playableHelper.setStoreUrl(iosUrl, androidUrl); // this section only needs for Google and Unity channel
   }
 
