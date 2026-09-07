@@ -75,7 +75,7 @@ const p = "playable-ads-adapter",
           sdkScript: '<script src="./mraid.js"></script>',
         },
         Unity: {
-          head: "\n<!--https://play.google.com/store/apps/details?id=com.brainrot.mini.challenge\n-->\n<!--\n-->",
+          head: "\n<!--https://play.google.com/store/apps/details?id=com.brainrott.minigame.challenge\n-->\n<!--\n-->",
           body: "<script>if(mraid.getState()==='loading'){mraid.addEventListener('ready',onSdkReady)}else{onSdkReady()}function viewableChangeHandler(viewable){if(viewable){}else{}}function onSdkReady(){mraid.addEventListener('viewableChange',viewableChangeHandler);if(mraid.isViewable()){showMyAd()}}var url='';var android='';function setStoreUrl(iosUrl, androidUrl){url=iosUrl;android=androidUrl;if(/android/i.test(navigator.userAgent)){url=android}};function redirectStore(){mraid.open(url)};function showMyAd(){}</script>",
           sdkScript: '<script src="./mraid.js"></script>',
         },
