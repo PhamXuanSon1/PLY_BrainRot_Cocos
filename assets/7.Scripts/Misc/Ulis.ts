@@ -10,7 +10,7 @@ import { pc } from '../Manager/PointerController';
 import { ui } from '../Manager/UI';
 const {ccclass, property} = _decorator;
 
-@ccclass
+@ccclass('MiscUlis')
 export default class Ulis {
 
     static v2tov3(v2: Vec2): Vec3 {

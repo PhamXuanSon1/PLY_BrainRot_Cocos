@@ -8,6 +8,7 @@
 import { CCInteger, Component, Node, Prefab, Quat, Vec3, _decorator, instantiate, log, v3 } from "cc"; 
 // import { PoolAmount } from "./PoolAmount";
 import { PoolMember, PoolType } from "./PoolMember";
+import { PoolAmount } from "./PoolAmount";
 import PoolControl from "./PoolControl";
 
 const { ccclass, property, executeInEditMode } = _decorator;
@@ -50,21 +51,11 @@ export class Pool {
   }
 }
 
-@ccclass
-export class PoolAmount {
-  @property(Node)
-  public root: Node = null;
-
-  @property(Prefab)
-  public prefab: PoolMember = null;
-
-  @property(CCInteger)
-  public amount: number = 0;
-}
+export { PoolAmount };
 
 export var pm: PoolManager = null;
 
-@ccclass
+@ccclass('PoolManager')
 @executeInEditMode(true)
 export class PoolManager extends Component{
 
@@ -110,6 +101,7 @@ export class PoolManager extends Component{
 
   onLoad() {
     pm = this;
+    if (!this.poolControll) return;
     this.preLoad(this.poolControll.poolAmounts);
   }
     

@@ -20,7 +20,7 @@ export enum PoolType {
     
 }
 
-@ccclass
+@ccclass('PoolMember')
 export class PoolMember extends Component{
     @property({type: Enum(PoolType)})
     type: PoolType = PoolType.Default;

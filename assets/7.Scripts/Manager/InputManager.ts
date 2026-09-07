@@ -48,8 +48,8 @@ export class InputManager extends Component {
     @property({ type: Node, tooltip: 'Màn hình hiển thị khi Thua (Lose/Loss)' })
     loseCard: Node = null!;
 
-    @property({ type: Node, tooltip: 'Node cha chứa các object cần làm tối khi Thua (Lose). Kéo Node cha (ví dụ Scene hoặc ScaleGameplay) vào đây' })
-    darkenTarget: Node = null!;
+    @property([Node])
+    darkenTarget: Node[] = [];
 
     @property({ tooltip: 'Độ tối khi Thua (từ 0 đến 1: 0 = đen hoàn toàn, 0.3 = tối 70%, 1 = giữ nguyên)' })
     darkFactor: number = 0.3;
@@ -260,13 +260,7 @@ export class InputManager extends Component {
         this.offBinding();
 
         // Lam toi tat ca obj con cua darkenTarget
-        const target = this.darkenTarget 
-            ?? find('Canvas3D/Scenes/ScaleGameplay/Scene')
-            ?? find('Canvas2D/Scenes/ScaleGameplay/Scene')
-            ?? find('Canvas3D/Scenes/ScaleGameplay')
-            ?? find('Canvas2D/Scenes/ScaleGameplay')
-            ?? null;
-        if (target) {
+        for (const target of this.darkenTarget) {
             this.darkenNode(target, this.darkenDuration, this.darkFactor);
         }
 

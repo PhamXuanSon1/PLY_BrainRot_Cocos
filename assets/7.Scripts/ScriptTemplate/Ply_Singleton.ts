@@ -14,25 +14,29 @@ const { ccclass } = _decorator;
 @ccclass('Ply_Singleton')
 export class Ply_Singleton extends Component {
 
-    private static _instances: Map<string, Ply_Singleton> = new Map();
+    // Dung chinh constructor lam key thay vi constructor.name:
+    // khi build (release) ten class bi minify thanh cung mot ky tu ngan,
+    // khien moi subclass bi coi la trung nhau va bi destroy nham.
+    private static _instances: Map<Function, Ply_Singleton> = new Map();
 
     /**
      * Ghi de phuong thuc nay trong subclass va goi super.onLoad().
      * Cac subclass nen tu gan gian tri cho bien static Ins cua minh.
      */
     onLoad() {
-        const className = (this.constructor as any).name;
-        if (Ply_Singleton._instances.has(className)) {
+        const key = this.constructor as Function;
+        const existed = Ply_Singleton._instances.get(key);
+        if (existed && existed !== this && existed.isValid) {
             this.node.destroy();
             return;
         }
-        Ply_Singleton._instances.set(className, this);
+        Ply_Singleton._instances.set(key, this);
     }
 
     onDestroy() {
-        const className = (this.constructor as any).name;
-        if (Ply_Singleton._instances.get(className) === this) {
-            Ply_Singleton._instances.delete(className);
+        const key = this.constructor as Function;
+        if (Ply_Singleton._instances.get(key) === this) {
+            Ply_Singleton._instances.delete(key);
         }
     }
 }

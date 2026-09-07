@@ -8,7 +8,7 @@
 import { Node, Sprite, SpriteFrame, TweenEasing, Vec2, Vec3, _decorator, resources, v2, v3 } from 'cc';
 const {ccclass, property} = _decorator;
 
-@ccclass
+@ccclass('MatchAssetUlis')
 export default class Ulis {
 
     static v2tov3(v2: Vec2): Vec3 {

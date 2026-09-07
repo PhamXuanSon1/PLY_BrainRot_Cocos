@@ -8,7 +8,7 @@
 import { Component, Node, Prefab, Quat, Vec3, _decorator, instantiate, log, v3 } from "cc"; 
 // import { PoolAmount } from "./PoolAmount";
 import { PoolMember, PoolType } from "./PoolMember";
-import { PoolAmount, PoolManager } from "./PoolManager";
+import { PoolAmount } from "./PoolAmount";
 
 const { ccclass, property, executeInEditMode } = _decorator;
 
