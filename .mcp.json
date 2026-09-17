@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "funplay_cocos": {
+      "type": "http",
+      "url": "http://127.0.0.1:20601/"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "f:/CocosProject/PLY_BrainRot_Cocos"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}

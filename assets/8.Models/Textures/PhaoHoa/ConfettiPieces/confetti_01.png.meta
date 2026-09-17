@@ -1,5 +1,5 @@
 {
-  "ver": "1.0.25",
+  "ver": "1.0.27",
   "importer": "image",
   "imported": true,
   "uuid": "ce38e123-959b-4fda-bc4f-05e659b44a52",
@@ -62,16 +62,16 @@
         "vertices": {
           "rawPosition": [
             -35.5,
-            -60.0,
+            -60,
             0,
             35.5,
-            -60.0,
+            -60,
             0,
             -35.5,
-            60.0,
+            60,
             0,
             35.5,
-            60.0,
+            60,
             0
           ],
           "indexes": [
@@ -104,12 +104,12 @@
           ],
           "minPos": [
             -35.5,
-            -60.0,
+            -60,
             0
           ],
           "maxPos": [
             35.5,
-            60.0,
+            60,
             0
           ]
         },
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
-    "redirect": "ce38e123-959b-4fda-bc4f-05e659b44a52@f9941"
+    "redirect": "ce38e123-959b-4fda-bc4f-05e659b44a52@6c48a"
   }
 }

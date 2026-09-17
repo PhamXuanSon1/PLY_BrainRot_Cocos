@@ -4,7 +4,7 @@ import { PointerController } from './PointerController';
 import { SoundType } from './SoundManager';
 import { Clock } from './Clock';
 import { ipm } from './InputManager';
-import { GameController } from '../Tool/GameController';
+import { GameController, gc } from '../Tool/GameController';
 const { ccclass, property } = _decorator;
 
 export enum BindUIType {
@@ -88,8 +88,8 @@ export class UI extends Component {
 
         console.log('openStore');  
         World.ins?.soundmanager?.stopAll();      
-        if (GameController.instance) {
-            GameController.instance.redirectToStore();
+        if (gc) {
+            gc.redirectToStore();
         } else if (World.ins?.openStore) {
             World.ins.openStore.redirectToStore();
         } else {
