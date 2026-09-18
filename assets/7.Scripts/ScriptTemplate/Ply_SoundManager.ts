@@ -8,7 +8,13 @@ const { ccclass, property } = _decorator;
 export enum FxType {
     Bullet = 0,
     Confetti = 1,
+    Whoosh = 2,
+    Pick = 3,
+    Win = 4,
+    Lose = 5,
+    Scan = 6,
 }
+const FX_COUNT = 7;
 Enum(FxType);
 
 /**
@@ -38,6 +44,21 @@ class FxAudio {
 
     @property(SoundData)
     confetti: SoundData = new SoundData();
+
+    @property({ type: SoundData, tooltip: 'Hunter truot vao / ra' })
+    whoosh: SoundData = new SoundData();
+
+    @property({ type: SoundData, tooltip: 'Nhac actor len' })
+    pick: SoundData = new SoundData();
+
+    @property(SoundData)
+    win: SoundData = new SoundData();
+
+    @property(SoundData)
+    lose: SoundData = new SoundData();
+
+    @property({ type: SoundData, tooltip: 'Dai do quet (loop)' })
+    scan: SoundData = new SoundData();
 }
 
 /**
@@ -60,9 +81,9 @@ export class Ply_SoundManager extends Ply_Singleton {
     @property(AudioSource)
     bgm1: AudioSource | null = null;
 
-    private fxSources: (AudioSource | null)[] = new Array(2).fill(null);
-    private queuedCount: number[] = new Array(2).fill(0);
-    private queueTimers: (number | null)[] = new Array(2).fill(null);
+    private fxSources: (AudioSource | null)[] = new Array(FX_COUNT).fill(null);
+    private queuedCount: number[] = new Array(FX_COUNT).fill(0);
+    private queueTimers: (number | null)[] = new Array(FX_COUNT).fill(null);
 
     private isMute: boolean = false;
 
@@ -223,6 +244,11 @@ export class Ply_SoundManager extends Ply_Singleton {
         switch (type) {
             case FxType.Bullet: return this.fxAudio.bullet;
             case FxType.Confetti: return this.fxAudio.confetti;
+            case FxType.Whoosh: return this.fxAudio.whoosh;
+            case FxType.Pick: return this.fxAudio.pick;
+            case FxType.Win: return this.fxAudio.win;
+            case FxType.Lose: return this.fxAudio.lose;
+            case FxType.Scan: return this.fxAudio.scan;
             default: return null;
         }
     }

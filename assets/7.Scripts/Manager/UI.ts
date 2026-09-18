@@ -136,7 +136,26 @@ export class UI extends Component {
     }
 
     offHand() {
-        this.hand.active = false;
+        this.stopHand();
+    }
+
+    private handStopped: boolean = false;
+
+    /** Bat hand tutorial (startHand -> endHand, loop). */
+    playHand() {
+        this.handStopped = false;
+        this.moveHand();
+    }
+
+    /** Dung han hand tutorial (dung ca tween, tranh handTap bat lai). */
+    stopHand() {
+        this.handStopped = true;
+        if (this.hand) {
+            Tween.stopAllByTarget(this.hand);
+            const child = this.hand.children[0]?.getComponentInChildren(Sprite);
+            if (child) Tween.stopAllByTarget(child);
+            this.hand.active = false;
+        }
     }
 
 
@@ -191,6 +210,7 @@ export class UI extends Component {
 
         this.bindings.forEach(bind => {
             bind.binds.forEach(item => {
+                if (!item) return;
                 item.position = item.position.clone();
                 let pos = item.getWorldPosition();
                 switch(bind.type) {
@@ -286,7 +306,7 @@ export class UI extends Component {
     }
 
     handTap(node: Node) {
-        if(!node) return;
+        if(!node || this.handStopped) return;
         this.current = node;
         this.hand.worldPosition = node.getWorldPosition();
         this.hand.active = true;
@@ -304,6 +324,7 @@ export class UI extends Component {
     isFirtMove: number = 0;
     delayTime: number = 0;
     moveHand() {
+        if(this.handStopped) return;
         if(!this.startHand || !this.endHand) return;
         let dt = this.delayTime;
         if(this.isFirtMove > 0) {

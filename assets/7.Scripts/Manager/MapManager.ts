@@ -2,6 +2,7 @@ import { _decorator, Node } from 'cc';
 import { Ply_Singleton } from '../ScriptTemplate/Ply_Singleton';
 import { Ply_Pool, PoolType } from '../ScriptTemplate/Ply_Pool';
 import { Ply_GameUnit } from '../ScriptTemplate/Ply_GameUnit';
+import { HideLevel } from '../HideSeek/HideLevel';
 const { ccclass, property } = _decorator;
 
 /**
@@ -102,6 +103,12 @@ export class MapManager extends Ply_Singleton {
 
     public getCurrentIndex(): number {
         return this.currentIndex;
+    }
+
+    /** HideLevel cua Map dang active (null neu Map chua gan). */
+    public getCurrentLevel(): HideLevel | null {
+        const map = this.maps[this.currentIndex];
+        return map ? map.getComponent(HideLevel) : null;
     }
 
     /**

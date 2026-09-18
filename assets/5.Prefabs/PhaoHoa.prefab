@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "PhaoHoa",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_native": "",
     "data": {
       "__id__": 1
@@ -90,6 +91,7 @@
     "__type__": "cc.Node",
     "_name": "Confetti_01",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -139,6 +141,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 2
     },
@@ -166,6 +169,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 2
     },
@@ -187,11 +191,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -217,7 +221,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -284,12 +288,15 @@
       "__id__": 0
     },
     "fileId": "N5GGx6KtyQqDTjD3saRZkb",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_02",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -339,6 +346,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 8
     },
@@ -366,6 +374,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 8
     },
@@ -387,11 +396,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -417,7 +426,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -484,12 +493,15 @@
       "__id__": 0
     },
     "fileId": "2l26nkaylEMyosHNwyloPd",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_03",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -539,6 +551,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 14
     },
@@ -566,6 +579,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 14
     },
@@ -587,11 +601,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -617,7 +631,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -684,12 +698,15 @@
       "__id__": 0
     },
     "fileId": "BMZQf4G9SBSqfPDA28uSwN",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_04",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -739,6 +756,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 20
     },
@@ -766,6 +784,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 20
     },
@@ -787,11 +806,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -817,7 +836,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -884,12 +903,15 @@
       "__id__": 0
     },
     "fileId": "ccStq3fiOLUwQmLeR2zufw",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_05",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -939,6 +961,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 26
     },
@@ -966,6 +989,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 26
     },
@@ -987,11 +1011,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -1017,7 +1041,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -1084,12 +1108,15 @@
       "__id__": 0
     },
     "fileId": "l8Y2WVWHnATriHmaVXOEpL",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_06",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -1139,6 +1166,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 32
     },
@@ -1166,6 +1194,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 32
     },
@@ -1187,11 +1216,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -1217,7 +1246,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -1284,12 +1313,15 @@
       "__id__": 0
     },
     "fileId": "J0qrqKdHsF0qHM3XlSd+D9",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_07",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -1339,6 +1371,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 38
     },
@@ -1366,6 +1399,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 38
     },
@@ -1387,11 +1421,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -1417,7 +1451,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -1484,12 +1518,15 @@
       "__id__": 0
     },
     "fileId": "i/MEeq6iTqTfibBb5z6/aB",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_08",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -1539,6 +1576,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 44
     },
@@ -1566,6 +1604,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 44
     },
@@ -1587,11 +1626,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -1617,7 +1656,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -1684,12 +1723,15 @@
       "__id__": 0
     },
     "fileId": "fCt3xq6KceMheFYV/rKSte",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "Confetti_09",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -1739,6 +1781,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 50
     },
@@ -1766,6 +1809,7 @@
     "__type__": "cc.ParticleSystem2D",
     "_name": "Node<ParticleSystem2D>",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 50
     },
@@ -1787,11 +1831,11 @@
       "a": 255
     },
     "duration": 0.3,
-    "emissionRate": 30,
-    "life": 2,
-    "lifeVar": 0,
+    "emissionRate": 90,
+    "life": 2.2,
+    "lifeVar": 0.4,
     "angle": 90,
-    "angleVar": 5,
+    "angleVar": 12,
     "startSize": 40,
     "startSizeVar": 5,
     "endSize": 30,
@@ -1817,7 +1861,7 @@
       "y": -450
     },
     "speed": 1000,
-    "speedVar": 400,
+    "speedVar": 300,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
@@ -1884,12 +1928,15 @@
       "__id__": 0
     },
     "fileId": "QVz1HwG9kX0HM9awdGDwcu",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
     "__type__": "cc.Node",
     "_name": "confetii blaster",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "_parent": {
       "__id__": 1
     },
@@ -1939,6 +1986,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 56
     },
@@ -1966,6 +2014,7 @@
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 56
     },
@@ -2023,6 +2072,7 @@
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 1
     },
