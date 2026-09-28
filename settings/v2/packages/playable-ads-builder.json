@@ -1,6 +1,6 @@
 {
   "__version__": "1.0.0",
-  "googleUrl": "https://play.google.com/store/apps/details?id=com.brainrott.minigame.challenge",
+  "googleUrl": "",
   "channel_Unity": true,
   "channel_AppLovin": true,
   "channel_Facebook": true,
@@ -9,5 +9,5 @@
   "channel_Mintegral": true,
   "channel_Moloco": true,
   "channel_TikTok": true,
-  "appleUrl": ""
+  "appleUrl": "https://apps.apple.com/us/app/tip-tap-challenge-minigame/id6760379229"
 }
